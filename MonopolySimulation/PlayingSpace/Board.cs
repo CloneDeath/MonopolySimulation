@@ -45,5 +45,6 @@
 			new EventSpace("Luxury Tax"),
 			new PropertySpace("Boardwalk")
 		};
+		public int NumberOfSpaces => Spaces.Count;
 	}
 }
