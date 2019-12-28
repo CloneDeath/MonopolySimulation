@@ -1,4 +1,5 @@
 ﻿using MonopolySimulation.PlayingSpace;
+using MonopolySimulation.PlayingSpace.SpaceTypes;
 using MonopolySimulation.RandomDice;
 
 namespace MonopolySimulation {
@@ -26,9 +27,17 @@ namespace MonopolySimulation {
 		protected virtual void RunTurn(Player player) {
 			var roll = Die.Roll();
 			MovePlayer(player, roll.Total);
+			ActivateSpace(player);
 
 			if (roll.IsDoubles) {
 				RunTurn(player);
+			}
+		}
+
+		private void ActivateSpace(Player player) {
+			var space = Board.GetSpace(player.Location);
+			if (space is EventSpace eventSpace) {
+				eventSpace.TriggerEventFor(player);
 			}
 		}
 

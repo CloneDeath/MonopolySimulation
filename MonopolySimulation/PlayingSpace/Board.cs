@@ -1,4 +1,6 @@
-﻿namespace MonopolySimulation.PlayingSpace {
+﻿using MonopolySimulation.PlayingSpace.SpaceTypes;
+
+namespace MonopolySimulation.PlayingSpace {
 	public class Board {
 		public Spaces Spaces { get; set; } = new Spaces { 
 			new BlankSpace("Go"),
@@ -34,7 +36,7 @@
 			new PropertySpace("Ventnor Avenue"),
 			new UtilitySpace("Water Works"),
 			new PropertySpace("Marvin Gardens"),
-			new EventSpace("Go To Jail"),
+			new GoToJailSpace(),
 			new PropertySpace("Pacific Avenue"),
 			new PropertySpace("North Carolina Avenue"),
 			new EventSpace("Community Chest"),
@@ -45,6 +47,11 @@
 			new EventSpace("Luxury Tax"),
 			new PropertySpace("Boardwalk")
 		};
+		
 		public int NumberOfSpaces => Spaces.Count;
+
+		public ISpace GetSpace(int location) {
+			return location == -1 ? new BlankSpace("In Jail") : Spaces[location];
+		}
 	}
 }

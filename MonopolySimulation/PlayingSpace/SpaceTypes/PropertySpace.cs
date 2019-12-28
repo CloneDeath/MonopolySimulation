@@ -1,4 +1,4 @@
-﻿namespace MonopolySimulation.PlayingSpace {
+﻿namespace MonopolySimulation.PlayingSpace.SpaceTypes {
 	public class PropertySpace : ISpace {
 		public PropertySpace(string name) {
 			Name = name;
