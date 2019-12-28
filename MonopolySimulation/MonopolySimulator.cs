@@ -7,27 +7,37 @@ namespace MonopolySimulation {
 		public Players Players { get; set; } = new Players();
 		public DicePair Die { get; set; } = new DicePair();
 
-		public void AddPlayer() {
-			Players.Add(new Player());
+		public void AddPlayer(Player player) {
+			Players.Add(player);
 		}
 
 		public void Run(int rounds) {
+			for (var round = 0; round < rounds; round++) {
+				RunRound(round);
+			}
+		}
+
+		protected virtual void RunRound(int roundNumber) {
 			foreach (var player in Players) {
 				RunTurn(player);
 			}
 		}
 
-		private void RunTurn(Player player) {
+		protected virtual void RunTurn(Player player) {
 			var roll = Die.Roll();
-			player.Location += roll.Total;
-			if (player.Location >= Board.NumberOfSpaces) {
-				player.Location -= Board.NumberOfSpaces;
-				player.Money += 200;
-			}
+			MovePlayer(player, roll.Total);
 
 			if (roll.IsDoubles) {
 				RunTurn(player);
 			}
+		}
+
+		protected virtual void MovePlayer(Player player, int spaces) {
+			player.Location += spaces;
+			if (player.Location < Board.NumberOfSpaces) return;
+			
+			player.Location -= Board.NumberOfSpaces;
+			player.Money += 200;
 		}
 	}
 }
