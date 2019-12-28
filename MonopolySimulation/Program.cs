@@ -1,9 +1,10 @@
-﻿using System;
+﻿using MonopolySimulation.PlayingSpace;
 
 namespace MonopolySimulation {
-	class Program {
-		static void Main(string[] args) {
-			Console.WriteLine("Hello World!");
+	public class Program {
+		public static void Main() {
+			var simulator = new MonopolySimulator();
+			simulator.AddPlayer();
 		}
 	}
 }
