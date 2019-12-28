@@ -1,7 +1,9 @@
 ﻿using MonopolySimulation.PlayingSpace.SpaceTypes;
+using MonopolySimulation.RandomDice;
 
 namespace MonopolySimulation.PlayingSpace {
 	public class Board {
+		public DicePair Die { get; set; } = new DicePair();
 		public Spaces Spaces { get; set; } = new Spaces { 
 			new BlankSpace("Go"),
 			new PropertySpace("Mediterranean Avenue") {
@@ -53,5 +55,7 @@ namespace MonopolySimulation.PlayingSpace {
 		public ISpace GetSpace(int location) {
 			return location == -1 ? new BlankSpace("In Jail") : Spaces[location];
 		}
+
+		public DicePairResult RollDie() => Die.Roll();
 	}
 }

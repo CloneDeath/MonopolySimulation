@@ -3,7 +3,7 @@
 		public GoToJailSpace() : base("Go to Jail") { }
 
 		public override void TriggerEventFor(Player player) {
-			player.Location = -1;
+			player.SetLocation(-1);
 		}
 	}
 }
